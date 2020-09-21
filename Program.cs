@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using OptimizelySDK;
 using OptimizelySDK.Entity;
-using System.Collections.Generic;
 
 namespace optimizely_test
 {
@@ -13,15 +13,23 @@ namespace optimizely_test
         /// <param name="iterations">Number of iterations to test the feature.</param>
         /// <param name="userId">Value that uniquely identifies the user.</param>
         /// <param name="attributes">Colon-delimited key-value pairs separated by spaces.</param>
-        static void Main(string sdkKey, string feature, string userId = null, int iterations = 1, params string[] attributes)
+        static void Main(string sdkKey, string feature, string userId = null, int iterations = 1000, params string[] attributes)
         {
-            CheckOptimizelyFeature(sdkKey, feature, userId, iterations, ExtractAttributes(attributes));
+            if (string.IsNullOrWhiteSpace(sdkKey) || string.IsNullOrWhiteSpace(feature))
+            {
+                Console.WriteLine("Usage:\n\toptimizely-test -h");
+            }
+            else
+            {
+                CheckOptimizelyFeature(sdkKey, feature, userId, iterations, ExtractAttributes(attributes));
+            }
         }
 
         private static IEnumerable<(string, string)> ExtractAttributes(params string[] attributes)
             => attributes
-                .Select(attribute => attribute.Split(new[] { ':', '=' }))
-                .Select(attribute => (attribute.ElementAtOrDefault(0), attribute.ElementAtOrDefault(1)));
+                ?.Select(attribute => attribute.Split(new[] { ':', '=' }))
+                .Select(attribute => (attribute.ElementAtOrDefault(0), attribute.ElementAtOrDefault(1)))
+                ?? new (string, string)[] {};
 
         private static void CheckOptimizelyFeature(string sdkKey, string feature, string userId, int iterations, IEnumerable<(string, string)> attributes)
         {

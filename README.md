@@ -10,6 +10,20 @@ dotnet build
 
 ## Usage
 
+### From source code
+
+```bash
+./dotnet run -- -h
+./dotnet run --
+    --sdk-key [SDK key]
+    --feature [name of feature]
+    --iterations [number of iterations]
+    --userId [value that uniquely identifies the user]
+    --attributes [colon-delimited, space separated user attributes]
+```
+
+### Built app
+
 ```bash
 ./optimizely-test -h
 ./optimizely-test
