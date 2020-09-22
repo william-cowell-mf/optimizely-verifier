@@ -4,7 +4,7 @@ using System.Linq;
 using OptimizelySDK;
 using OptimizelySDK.Entity;
 
-namespace optimizely_test
+namespace OptimizelyVerifier
 {
     class Program
     {
@@ -17,7 +17,7 @@ namespace optimizely_test
         {
             if (string.IsNullOrWhiteSpace(sdkKey) || string.IsNullOrWhiteSpace(feature))
             {
-                Console.WriteLine("Usage:\n\toptimizely-test -h");
+                Console.WriteLine("Usage:\n\toptimizely-verifier -h");
             }
             else
             {

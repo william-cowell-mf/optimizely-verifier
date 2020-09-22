@@ -1,8 +1,10 @@
-# Optimizely-Test
+# Optimizely-Verifier
 
-This app will check the effective rollout percentage for a given set of user attributes.
+This app will verify the effective rollout percentage for a given set of user attributes.
 
-## How to build
+## How to build
+
+This project has a dependency on [.NET Core](https://dotnet.microsoft.com/download/dotnet-core).
 
 ```bash
 dotnet build
@@ -25,8 +27,8 @@ dotnet build
 ### From built app
 
 ```bash
-./optimizely-test -h
-./optimizely-test
+./optimizely-verify -h
+./optimizely-verify
     --sdk-key [SDK key]
     --feature [name of feature]
     --iterations [number of iterations]
